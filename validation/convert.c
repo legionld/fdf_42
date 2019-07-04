@@ -6,7 +6,7 @@
 /*   By: jschille <jschille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 10:55:56 by ccriston          #+#    #+#             */
-/*   Updated: 2019/07/03 22:48:23 by jschille         ###   ########.fr       */
+/*   Updated: 2019/07/04 10:57:02 by jschille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ static int			ft_checkcolor(char *str, int i, t_point *new)
 			i++;
 			j++;
 		}
-		ft_putnbr(j);
-		ft_putchar('\n');
 		if (j != 9)
 			return (0);
 	}

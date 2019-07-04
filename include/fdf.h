@@ -6,14 +6,13 @@
 /*   By: jschille <jschille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 13:43:39 by jschille          #+#    #+#             */
-/*   Updated: 2019/07/03 23:10:02 by jschille         ###   ########.fr       */
+/*   Updated: 2019/07/04 10:55:59 by jschille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include <stdio.h>
 # include <mlx.h>
 # include <stdlib.h>
 # include <math.h>
@@ -55,6 +54,9 @@ typedef struct		s_mlx
 	int				bpp;
 	int				size_line;
 	int				alpha;
+	int				pres_m;
+	int				pres_x;
+	int				pres_y;
 }					t_mlx;
 
 /*
@@ -87,6 +89,13 @@ void				ft_help(t_mlx *img);
 void				move_center(t_map *map);
 void				move_mid(t_map *map);
 void				move_back(t_map *map);
+void				move_img(t_map *fdf, int x, int y);
+
+void				re_draw(t_mlx *img);
+void				destroy(t_mlx *img);
+int					mouse_releas(int btn, int x, int y, t_mlx *img);
+int					mouse_pres(int btn, int x, int y, t_mlx *img);
+int					mouse_move(int x, int y, t_mlx *img);
 
 /*
 **Module 3 visualization

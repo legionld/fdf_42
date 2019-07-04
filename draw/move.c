@@ -6,7 +6,7 @@
 /*   By: jschille <jschille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 17:43:58 by jschille          #+#    #+#             */
-/*   Updated: 2019/07/03 23:11:06 by jschille         ###   ########.fr       */
+/*   Updated: 2019/07/04 10:41:48 by jschille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,28 @@ void	ft_right(t_map *fdf)
 		y++;
 	}
 	fdf->mid_x += MOVE;
+}
+
+void	move_img(t_map *fdf, int x, int y)
+{
+	int j;
+	int i;
+
+	if (fdf->mid_x > WIDTH || fdf->mid_x < 0 ||
+		fdf->mid_y > HIGHT || fdf->mid_y < 0)
+		return ;
+	i = 0;
+	while (i < fdf->h)
+	{
+		j = 0;
+		while (j < fdf->w)
+		{
+			fdf->points[i][j].x += x;
+			fdf->points[i][j].y += y;
+			j++;
+		}
+		i++;
+	}
+	fdf->mid_x += x;
+	fdf->mid_y += y;
 }

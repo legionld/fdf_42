@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_data.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccriston <ccriston@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jschille <jschille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 00:54:02 by jschille          #+#    #+#             */
-/*   Updated: 2019/07/03 12:49:05 by ccriston         ###   ########.fr       */
+/*   Updated: 2019/07/04 10:31:54 by jschille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,11 @@ void		create_loop(t_map *map)
 	ft_free(mlx->map);
 	ft_free(map);
 	ft_memdel((void **)&(mlx));
+}
+
+void		re_draw(t_mlx *img)
+{
+	trace_point(img->map, img);
+	mlx_put_image_to_window(img->mlx_ptr, img->win_ptr, img->img_ptr, 0, 0);
+	ft_help(img);
 }

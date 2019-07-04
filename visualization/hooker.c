@@ -6,18 +6,23 @@
 /*   By: jschille <jschille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 15:46:48 by jschille          #+#    #+#             */
-/*   Updated: 2019/07/03 22:28:48 by jschille         ###   ########.fr       */
+/*   Updated: 2019/07/04 10:42:46 by jschille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void		ft_keyrotate(int keycode, t_mlx *img)
+void			destroy(t_mlx *img)
 {
 	mlx_destroy_image(img->mlx_ptr, img->img_ptr);
 	img->img_ptr = mlx_new_image(img->mlx_ptr, WIDTH, HIGHT);
 	img->img_data = (unsigned int*)mlx_get_data_addr(img->img_ptr,
 					&img->bpp, &img->size_line, &img->alpha);
+}
+
+static void		ft_keyrotate(int keycode, t_mlx *img)
+{
+	destroy(img);
 	if (keycode == 0)
 		rotate_y(img->map, -0.03, img->map->points);
 	if (keycode == 2)
@@ -30,9 +35,7 @@ static void		ft_keyrotate(int keycode, t_mlx *img)
 		rotate_z(img->map, -0.03, img->map->points);
 	if (keycode == 14)
 		rotate_z(img->map, 0.03, img->map->points);
-	trace_point(img->map, img);
-	mlx_put_image_to_window(img->mlx_ptr, img->win_ptr, img->img_ptr, 0, 0);
-	ft_help(img);
+	re_draw(img);
 }
 
 static void		ft_keyscmove(int keycode, t_mlx *img)
@@ -79,4 +82,7 @@ void			hooker(t_mlx *mlx)
 {
 	mlx_hook(mlx->win_ptr, 17, 0, ft_close, (void *)NULL);
 	mlx_hook(mlx->win_ptr, 2, 0, key_press, mlx);
+	mlx_hook(mlx->win_ptr, 4, 0, mouse_pres, mlx);
+	mlx_hook(mlx->win_ptr, 5, 0, mouse_releas, mlx);
+	mlx_hook(mlx->win_ptr, 6, 0, mouse_move, mlx);
 }
